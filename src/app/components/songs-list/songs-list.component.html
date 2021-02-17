@@ -1,0 +1,10 @@
+<div class="row row-cols-1 row-cols-3 g-4">
+  <div *ngFor="let song of songs" class="card mb-1 ml-1 border-0">
+    <div class="card-body card-color text-white">
+      <h2 class="card-title">{{song._title}}</h2>
+      <p class="card-text">{{song._artist}}</p>
+      <p class="card-text">{{song._genre}}</p>
+      <button class="mr-4" mat-raised-button color="primary">Listen</button>
+      <button (click)="openDialogAddSongToPlaylist(song._id)" mat-raised-button color="accent">+ Playlist</button>
+    </div>
+  </div>

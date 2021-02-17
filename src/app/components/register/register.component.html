@@ -1,0 +1,34 @@
+<h1 class="text-white title">Sign In</h1>
+<h3 class="text-white">Easily, just a minute</h3>
+
+<form class="register-size text-white" *ngIf="group" [formGroup]="group">
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="mail" required>
+      <mat-error *ngIf="group.controls['mail'].invalid">{{getMailErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>Choose an user name</mat-label>
+      <input matInput placeholder="your name" formControlName="user_name" required>
+      <mat-error *ngIf="group.controls['user_name'].invalid">{{getUserNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>Choose a password</mat-label>
+
+      <input matInput placeholder="***********" formControlName="password" required>
+
+      <mat-error *ngIf="group.controls['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </p>
+
+</form>
+
+<button (click)="regUser()" mat-raised-button color="primary" class="register-size">Confirm</button>
+

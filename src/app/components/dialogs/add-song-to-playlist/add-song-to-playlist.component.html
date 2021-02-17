@@ -1,0 +1,13 @@
+<mat-selection-list [multiple]="false">
+  <mat-dialog-actions>
+    <mat-list-option *ngFor="let playlist of playlists">
+      <div [mat-dialog-close]=playlist.id>{{playlist.title}}</div>
+    </mat-list-option>
+  </mat-dialog-actions>
+</mat-selection-list>
+
+<mat-dialog-actions>
+  <mat-dialog-actions>
+    <button color="accent" mat-raised-button mat-dialog-close>Back</button>
+  </mat-dialog-actions>
+</mat-dialog-actions>
