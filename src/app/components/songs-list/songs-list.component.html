@@ -4,7 +4,10 @@
       <h2 class="card-title">{{song._title}}</h2>
       <p class="card-text">{{song._artist}}</p>
       <p class="card-text">{{song._genre}}</p>
+      <div class="m">
       <button class="mr-4" mat-raised-button color="primary">Listen</button>
       <button (click)="openDialogAddSongToPlaylist(song._id)" mat-raised-button color="accent">+ Playlist</button>
+      </div>
     </div>
   </div>
+</div>

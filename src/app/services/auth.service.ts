@@ -25,4 +25,12 @@ export class AuthService {
       headers: {Accept: 'application/json', mail, password}}).toPromise().catch(({error: {error}}) => {
       throw new Error(error);
     })
+
+  logout = async (accessToken: string, refreshToken: string): Promise<void> =>
+    this.http.delete<void>(`${this.API_BASE_URL}/logout`, {
+      headers: {Accept: 'application/json', access_token: accessToken, refresh_token: refreshToken}})
+      .toPromise()
+      .catch(({error: {error}}) => {
+      throw new Error(error);
+    })
 }
