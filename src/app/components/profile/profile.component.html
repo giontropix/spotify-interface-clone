@@ -1,6 +1,7 @@
 <div class="container-fluid mt-3">
   <div class="row justify-content-center">
-    <div class="col-3 ">
+
+    <div class="col-lg-3 col-md-12 order-lg-0 order-md-0">
       <mat-card class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
@@ -20,18 +21,18 @@
           <button (click)="openDialogAddPlaylist()" mat-raised-button color="accent" class="button-height">+</button>
         </div>
 
-        <mat-list-option *ngFor="let playlist of playlists" [value]="playlist">
-          <div (click)="openDialogPlaylistDetails(playlist.id)">{{playlist.title}}</div>
+        <mat-list-option *ngFor="let playlist of playlists" [value]="playlist" (click)="openDialogPlaylistDetails(playlist.id)">
+          {{playlist.title}}
         </mat-list-option>
         <h1 *ngIf="playlists.length === 0" class="text-white mt-3">No playlist saved, start now!</h1>
       </mat-selection-list>
     </div>
 
-    <div class="col-6 flex-wrap">
+    <div class="col-lg-6 col-md-12 order-lg-1 order-md-2 flex-wrap">
       <app-songs-list *ngIf="user" [user]="user"></app-songs-list>
     </div>
 
-    <div class="col-3">
+    <div class="col-lg-3 col-md-12 order-lg-2 order-md-1">
       <app-friends-list *ngIf="user" [user]="user"></app-friends-list>
     </div>
 
