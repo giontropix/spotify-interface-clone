@@ -1,12 +1,30 @@
+
+
 <div class="row justify-content-center">
+  <div class="col-10 search-bar">
+    <mat-form-field appearance="fill" class="w-100 text-white">
+      <mat-label>Search song, author...</mat-label>
+      <input [(ngModel)]= "search" matInput>
+    </mat-form-field>
+  </div>
+  <div class="col-2 search-bar">
+    <button (click)="getSearch(); isSearch=true" mat-raised-button color="primary" class="mb-3">Search</button>
+  </div>
+
+  <div *ngIf="isSearch" class="col-12 search-bar">
+    <button (click)="getSongs(); isSearch=false; search=''" mat-raised-button color="primary" class="mb-3">Delete search</button>
+  </div>
+
   <div *ngFor="let song of songs" class="card mb-1 ml-1 border-0">
     <div class="card-body card-color text-white">
       <h2 class="card-title">{{song._title}}</h2>
       <p class="card-text">{{song._artist}}</p>
       <p class="card-text">{{song._genre}}</p>
       <div class="m">
-      <button class="mr-4" mat-raised-button color="primary">Listen</button>
-      <button (click)="openDialogAddSongToPlaylist(song._id, song._title)" mat-raised-button color="accent">+ Playlist</button>
+        <button class="mr-4" mat-raised-button color="primary">Listen</button>
+        <button (click)="openDialogAddSongToPlaylist(song._id, song._title)" mat-raised-button color="accent">+
+          Playlist
+        </button>
       </div>
     </div>
   </div>

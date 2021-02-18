@@ -22,6 +22,10 @@ export class SongsListComponent implements OnInit {
   ) { }
   @Input() user!: User;
   songs: Song[] = [];
+  search = '';
+  isSearch = false;
+
+  getSearch = async () => this.songs = await this.songsService.all(this.search);
 
   getSongs = async () => this.songs = await this.songsService.all();
 
