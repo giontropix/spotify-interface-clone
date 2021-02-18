@@ -1,0 +1,21 @@
+.background {
+  background-image: url("src/assets/background.jpg");
+  background-color: #cccccc;
+  height: 93%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.title{
+  font-size: 8rem;
+}
+
+.translate {
+  transform: translateX(-6rem);
+  transition: transform 0.5s ease 0s;
+}
+
+.translate-back {
+  transform: translateX(0rem);
+  transition: transform 0.5s ease 0s;
+}

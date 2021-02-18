@@ -1,0 +1,36 @@
+<div class="container-fluid mt-3">
+  <div class="row justify-content-center">
+    <div class="col-3 ">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{user?._user_name}}</mat-card-title>
+          <mat-card-subtitle>{{user?._mail}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://i.pinimg.com/originals/1d/94/eb/1d94eb83e4b62a0b67047e8a40ad403c.jpg"
+             alt="Photo of a Shiba Inu">
+        <mat-card-content class="d-flex justify-content-between">
+          <h3 class="m-0">Your Music Here!</h3><button (click)="logout()" mat-raised-button color="primary">Logout</button>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-selection-list class="example-card" [multiple]="false">
+        <div class="d-flex justify-content-between">
+          <h1 class="text-white playlist-menu m-0">PLAYLIST</h1>
+          <button (click)="openDialogAddPlaylist()" mat-raised-button color="accent" class="button-height">+</button>
+        </div>
+
+        <mat-list-option *ngFor="let playlist of playlists" [value]="playlist">
+          <div (click)="openDialogPlaylistDetails(playlist.id)">{{playlist.title}}</div>
+        </mat-list-option>
+        <h1 *ngIf="playlists.length === 0" class="text-white mt-3">No playlist saved, start now!</h1>
+      </mat-selection-list>
+    </div>
+
+    <div class="col-6 flex-wrap">
+      <app-songs-list *ngIf="user" [user]="user"></app-songs-list>
+    </div>
+
+  </div>
+</div>
+

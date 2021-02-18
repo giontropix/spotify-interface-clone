@@ -1,0 +1,26 @@
+<h1 class="text-white title">Log In</h1>
+<h3 class="text-white">Try new music ways!</h3>
+
+<form class="login-size text-white" *ngIf="group" [formGroup]="group">
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="mail" required>
+      <mat-error *ngIf="group.controls['mail'].invalid">{{getMailErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>Choose a password</mat-label>
+
+      <input matInput placeholder="***********" formControlName="password" required>
+
+      <mat-error *ngIf="group.controls['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </p>
+
+</form>
+
+<button (click)="loginUser()" mat-raised-button color="primary" class="login-size">Confirm</button>
+

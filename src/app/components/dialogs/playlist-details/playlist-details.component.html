@@ -1,0 +1,52 @@
+<h1>Playlist title: {{this.playlist?._title}}</h1>
+<mat-dialog-content  class="mat-typography">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let element"> {{element._title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="length">
+    <th mat-header-cell *matHeaderCellDef> Length </th>
+    <td mat-cell *matCellDef="let element"> {{element._length}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="artist">
+    <th mat-header-cell *matHeaderCellDef> Artist </th>
+    <td mat-cell *matCellDef="let element"> {{element._artist}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="genre">
+    <th mat-header-cell *matHeaderCellDef> Genre </th>
+    <td mat-cell *matCellDef="let element"> {{element._genre}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="album">
+    <th mat-header-cell *matHeaderCellDef> Album </th>
+    <td mat-cell *matCellDef="let element"> {{element._album}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="deleteSong(element._id)" mat-raised-button color="warn">Remove</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button color="accent" mat-raised-button mat-dialog-close>Back</button>
+  <button color="primary" mat-raised-button [mat-dialog-close]="playlist?._id" cdkFocusInitial>
+    DELETE
+  </button>
+</mat-dialog-actions>
