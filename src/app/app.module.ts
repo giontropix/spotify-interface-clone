@@ -22,6 +22,8 @@ import {AddPlaylistComponent} from './components/dialogs/add-playlist/add-playli
 import {PlaylistDetailsComponent} from './components/dialogs/playlist-details/playlist-details.component';
 import {SongsListComponent} from './components/songs-list/songs-list.component';
 import {AddSongToPlaylistComponent} from './components/dialogs/add-song-to-playlist/add-song-to-playlist.component';
+import {FriendsListComponent} from './components/friends-list/friends-list.component';
+import {AddFriendComponent} from './components/dialogs/add-friend/add-friend.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import {AddSongToPlaylistComponent} from './components/dialogs/add-song-to-playl
     AddPlaylistComponent,
     PlaylistDetailsComponent,
     SongsListComponent,
-    AddSongToPlaylistComponent
+    AddSongToPlaylistComponent,
+    FriendsListComponent,
+    AddFriendComponent
   ],
   imports: [
     BrowserModule,

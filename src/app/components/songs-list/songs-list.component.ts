@@ -39,7 +39,7 @@ export class SongsListComponent implements OnInit {
     const dialogRef = this.dialog.open(AddSongToPlaylistComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(async (result) => {
       if (result) {
-        console.log(songId)
+        console.log(songId);
         try {
           await this.playlistsService.addToPlaylist(this.user._id, result, {songId});
         } catch (error: any) {

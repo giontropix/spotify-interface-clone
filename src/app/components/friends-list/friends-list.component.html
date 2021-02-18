@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-between">
+  <h1 class="text-white playlist-menu m-0">FRIENDS</h1>
+  <button (click)="openDialogAddFriend()" mat-raised-button color="accent" class="button-height">+</button>
+</div>
+<mat-selection-list [multiple]="false">
+  <mat-list-option *ngFor="let friend of followed">
+    <div class="d-flex justify-content-between">
+      {{friend._user_name}}
+      <button (click)="removeFollowed(friend._id)" mat-raised-button color="primary">Remove</button>
+    </div>
+  </mat-list-option>
+</mat-selection-list>
+<h1 class="text-white" *ngIf="followed.length === 0">No friends followed, start now!</h1>

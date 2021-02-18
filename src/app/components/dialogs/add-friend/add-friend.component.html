@@ -1,0 +1,16 @@
+<h1>Thousands of amazing people to know!</h1>
+<mat-selection-list [multiple]="false">
+  <mat-dialog-actions>
+    <mat-list-option *ngFor="let user of users">
+      <div *ngIf="user._id !== data.user" class="d-flex justify-content-between">{{user._user_name}}
+        <button *ngIf="removeJustFollowed(user._id) === undefined" (click)="addFriend(user._id)" mat-raised-button color="primary">Add</button>
+      </div>
+    </mat-list-option>
+  </mat-dialog-actions>
+</mat-selection-list>
+
+<mat-dialog-actions>
+  <mat-dialog-actions>
+    <button color="accent" mat-raised-button mat-dialog-close>Back</button>
+  </mat-dialog-actions>
+</mat-dialog-actions>
