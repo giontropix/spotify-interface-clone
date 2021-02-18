@@ -22,8 +22,16 @@ export class AddFriendComponent implements OnInit {
   }
 
   users: User[] = [];
+  isFriendAdded = false;
+  displayedColumns: string[] = ['name', 'action'];
+  dataSource: User[] = [];
 
-  getUsers = async () => this.users = await this.usersService.all();
+  getUsers = async () => {
+    this.users = await this.usersService.all();
+    this.dataSource = this.users;
+    this.dataSource.splice(this.dataSource.findIndex((user: User) => user._id === this.data.user), 1);
+    this.dataSource.map((user: User) => user._isFollowed = false);
+  }
 
   removeJustFollowed = (id: string) => this.data.followed.find((item: Follower) => item._id === id);
 
@@ -33,16 +41,17 @@ export class AddFriendComponent implements OnInit {
     });
   }
 
-  addFriend = async (userIdToFollow: string) => {
+  addFriend = async (userIdToFollow: string, userNameToFollow: string) => {
     try {
       await this.friendsService.add(this.data.user, {userIdToFollow});
     } catch (error: any) {
       return this.openSnackBar(error, 'Repeat!');
     }
+    this.openSnackBar(`${userNameToFollow} added!`, '');
   }
 
   ngOnInit(): void {
+    this.isFriendAdded = false;
     this.getUsers();
   }
-
 }

@@ -1,7 +1,8 @@
+<h1>Chose your Playlist</h1>
 <mat-selection-list [multiple]="false">
   <mat-dialog-actions>
     <mat-list-option *ngFor="let playlist of playlists">
-      <div [mat-dialog-close]=playlist.id>{{playlist.title}}</div>
+      <div [mat-dialog-close]=playlist>{{playlist.title}}</div>
     </mat-list-option>
   </mat-dialog-actions>
 </mat-selection-list>

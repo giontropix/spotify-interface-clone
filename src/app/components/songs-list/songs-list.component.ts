@@ -31,7 +31,7 @@ export class SongsListComponent implements OnInit {
     });
   }
 
-  openDialogAddSongToPlaylist = (songId: string): void => {
+  openDialogAddSongToPlaylist = (songId: string, songName: string): void => {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -39,12 +39,12 @@ export class SongsListComponent implements OnInit {
     const dialogRef = this.dialog.open(AddSongToPlaylistComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(async (result) => {
       if (result) {
-        console.log(songId);
         try {
-          await this.playlistsService.addToPlaylist(this.user._id, result, {songId});
+          await this.playlistsService.addToPlaylist(this.user._id, result.id, {songId});
         } catch (error: any) {
           return this.openSnackBar(error, 'Repeat!');
         }
+        this.openSnackBar(`${songName} added to ${result.title}`, '');
       }
     });
   }

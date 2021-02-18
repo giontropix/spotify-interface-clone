@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Add Account</h2>
+<h2 mat-dialog-title>Add Playlist</h2>
 <mat-dialog-content class="mat-typography">
   <form *ngIf="group" [formGroup]="group">
     <p>
@@ -14,6 +14,6 @@
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
   <button [disabled]="group?.status ==='INVALID'" mat-button [mat-dialog-close]="group" cdkFocusInitial>
-    Add Account
+    Add
   </button>
 </mat-dialog-actions>

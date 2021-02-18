@@ -34,8 +34,8 @@ export class FriendsListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = {user: this.user._id, followed: this.followed};
     const dialogRef = this.dialog.open(AddFriendComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(async () => {
-      window.location.reload();
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result) { window.location.reload(); }
     });
   }
 

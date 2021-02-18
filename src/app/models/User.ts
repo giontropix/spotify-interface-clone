@@ -8,4 +8,5 @@ export interface User {
   _playlist: Playlist[];
   _followers: Follower[];
   _following: Follower[];
+  _isFollowed: boolean;
 }
