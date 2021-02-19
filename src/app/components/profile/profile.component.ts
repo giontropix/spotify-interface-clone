@@ -86,11 +86,12 @@ export class ProfileComponent implements OnInit {
       if (result) {
         console.log( result);
         try {
-          await this.playlistsService.delete(this.route.snapshot.params.id, result);
+          await this.playlistsService.delete(this.route.snapshot.params.id, result._id);
         } catch (error: any) {
           return this.openSnackBar(error, 'Repeat!');
         }
-        window.location.reload();
+        this.openSnackBar(`Playlist "${result._title}" removed from your list!`, '');
+        this.getPlaylists();
       }
       });
   }
@@ -107,7 +108,8 @@ export class ProfileComponent implements OnInit {
         } catch (error: any) {
           return this.openSnackBar(error, 'Repeat!');
         }
-        window.location.reload();
+        this.openSnackBar(`Playlist "${result.controls.title.value}" added to your list!`, '');
+        this.getPlaylists();
       }
     });
   }

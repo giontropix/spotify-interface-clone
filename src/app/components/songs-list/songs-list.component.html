@@ -41,3 +41,5 @@
   <button (click)="prevSongs()" mat-raised-button color="primary"><</button>
   <button (click)="nextSongs()" mat-raised-button color="primary">></button>
 </div>
+
+<h1 class="text-white" *ngIf="allSongs.length === 0">Sorry, songs can't load now!</h1>

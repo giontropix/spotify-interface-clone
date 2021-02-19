@@ -24,7 +24,7 @@
         <mat-list-option *ngFor="let playlist of playlists" [value]="playlist" (click)="openDialogPlaylistDetails(playlist.id)">
           {{playlist.title}}
         </mat-list-option>
-        <h1 *ngIf="playlists.length === 0" class="text-white mt-3">No playlist saved, start now!</h1>
+        <h1 *ngIf="allPlaylists.length === 0" class="text-white mt-3">No playlist saved, start now!</h1>
       </mat-selection-list>
       <div *ngIf="allPlaylists.length > 3" class="d-flex justify-content-end">
         <button (click)="prevPlaylists()" mat-raised-button color="primary"><</button>

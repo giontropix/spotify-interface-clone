@@ -4,6 +4,7 @@ import {PlaylistsService} from '../../../services/playlists.service';
 import {Playlist} from '../../../models/Playlist';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Song} from '../../../models/Song';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-playlist-details',
@@ -15,7 +16,8 @@ export class PlaylistDetailsComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public route: ActivatedRoute,
-    public playlistsService: PlaylistsService
+    public playlistsService: PlaylistsService,
+    private snackBar: MatSnackBar
   ) { }
   displayedColumns: string[] = ['title', 'length', 'artist', 'genre', 'album', 'action'];
   playlist!: Playlist;
@@ -26,8 +28,15 @@ export class PlaylistDetailsComponent implements OnInit {
     this.dataSource = this.playlist._songs;
   }
 
-  deleteSong = async (songId: string) => {
+  openSnackBar = (message: string, action: string): void => {
+    this.snackBar.open(message, action, {
+      duration: 4000,
+    });
+  }
+
+  deleteSong = async (songId: string, songTitle: string) => {
     await this.playlistsService.deleteFromPlaylist(this.data.user, this.data.id, songId);
+    this.snackBar.open( `Song "${songTitle}" removed from playlist "${this.playlist._title}"`);
     await this.getPlaylist();
   }
 

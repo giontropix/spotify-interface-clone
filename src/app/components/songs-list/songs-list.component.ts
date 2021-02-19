@@ -72,7 +72,7 @@ export class SongsListComponent implements OnInit {
         } catch (error: any) {
           return this.openSnackBar(error, 'Repeat!');
         }
-        this.openSnackBar(`${songName} added to ${result.title}`, '');
+        this.openSnackBar(`Song "${songName}" added to playlist "${result.title}"`, '');
       }
     });
   }
@@ -81,5 +81,4 @@ export class SongsListComponent implements OnInit {
     this.getAllSongs();
     this.getSongs();
   }
-
 }

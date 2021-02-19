@@ -4,6 +4,7 @@ import {Follower} from '../../models/Follower';
 import {FriendsService} from '../../services/friends.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {AddFriendComponent} from '../dialogs/add-friend/add-friend.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-friends-list',
@@ -15,7 +16,8 @@ export class FriendsListComponent implements OnInit {
 
   constructor(
     private friendsService: FriendsService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
   ) { }
 
   @Input() user!: User;
@@ -51,9 +53,16 @@ export class FriendsListComponent implements OnInit {
     );
   }
 
-  removeFollowed = async (friendToUnfollowId: string) => {
+  removeFollowed = async (friendToUnfollowId: string, friendToUnfollowName: string) => {
     await this.friendsService.remove(this.user._id, friendToUnfollowId);
-    window.location.reload();
+    this.openSnackBar(`${friendToUnfollowName} removed from followed list!`, '');
+    this.getFollowed();
+  }
+
+  openSnackBar = (message: string, action: string): void => {
+    this.snackBar.open(message, action, {
+      duration: 4000,
+    });
   }
 
   openDialogAddFriend = (): void => {
@@ -63,7 +72,9 @@ export class FriendsListComponent implements OnInit {
     dialogConfig.data = {user: this.user._id, followed: this.followed};
     const dialogRef = this.dialog.open(AddFriendComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(async (result) => {
-      if (result) { window.location.reload(); }
+      if (result) {
+        this.getFollowed();
+      }
     });
   }
 
