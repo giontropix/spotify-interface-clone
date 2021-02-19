@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
     } catch (error: any){
       return this.openSnackBar(error, 'Repeat!');
     }
-    return this.openSnackBar(`User ${this.group?.controls.user_name.value} created!`, 'Log In!');
+    return this.openSnackBar(`User ${this.group?.controls.user_name.value} created!`, '');
   }
 
   ngOnInit(): void {

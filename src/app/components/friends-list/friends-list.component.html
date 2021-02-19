@@ -6,8 +6,9 @@
   </ng-template>
   <button (click)="openDialogAddFriend()" mat-raised-button color="accent" class="button-height">+</button>
 </div>
+
 <mat-selection-list [multiple]="false">
-  <mat-list-option *ngFor="let friend of followed">
+  <mat-list-option *ngFor="let friend of followed" class="p-0">
     <div class="d-flex justify-content-between">
       {{friend._user_name}}
       <button (click)="removeFollowed(friend._id, friend._user_name)" mat-raised-button color="warn">Remove</button>

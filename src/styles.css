@@ -15,3 +15,11 @@ body {
 .example-container .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
+
+.mat-list-base .mat-list-item.mat-list-item-with-avatar .mat-list-item-content-reverse .mat-list-text, .mat-list-base .mat-list-item.mat-list-option .mat-list-item-content-reverse .mat-list-text, .mat-list-base .mat-list-option.mat-list-item-with-avatar .mat-list-item-content-reverse .mat-list-text, .mat-list-base .mat-list-option.mat-list-option .mat-list-item-content-reverse .mat-list-text {
+  padding-right: 0 !important;
+}
+
+.mat-list-base .mat-list-item .mat-list-item-content-reverse, .mat-list-base .mat-list-option .mat-list-item-content-reverse {
+  padding-right: 0 !important;
+}
