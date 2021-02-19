@@ -15,3 +15,11 @@
 .align-songs{
   padding-left: 1.125rem;
 }
+
+.stop-button {
+  border-radius: 45% 3% 3% 45%;
+  position: absolute;
+  margin-left: -308px;
+  padding-right: 40px;
+  height: 54px;
+}

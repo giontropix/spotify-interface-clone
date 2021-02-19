@@ -28,6 +28,8 @@ export class SongsListComponent implements OnInit {
   songsOffset = 0;
   songsLimit = 9;
   isListening = false;
+  currentSong = '';
+  currentArtist = '';
   songUrl = '';
 
   getSearch = async () => this.songs = await this.songsService.all(this.search);
@@ -41,8 +43,11 @@ export class SongsListComponent implements OnInit {
     if (this.search === '') { this.isSearch = false; }
   }
 
-  getListen = (uri: string) => {
+  getListen = (uri: string, title: string, artist: string) => {
+    this.isListening = false;
     this.songUrl = uri;
+    this.currentSong = title;
+    this.currentArtist = artist;
     this.isListening = true;
   }
 
