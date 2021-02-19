@@ -1,19 +1,17 @@
 <div class="container-fluid mt-3">
   <div class="row justify-content-center">
 
-    <div class="col-lg-3 col-md-12 order-lg-0 order-0">
-      <mat-card class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+    <div class="col-sm-12 col-md-3 order-lg-0 order-0 mb-lg-5">
+      <mat-card class="example-card pb-0">
+
+        <mat-card-header class="justify-content-between">
           <mat-card-title>{{user?._user_name}}</mat-card-title>
           <mat-card-subtitle>{{user?._mail}}</mat-card-subtitle>
+          <button (click)="logout()" mat-raised-button color="primary" class="logout-button">Logout</button>
         </mat-card-header>
+
         <img mat-card-image src="https://i.pinimg.com/originals/1d/94/eb/1d94eb83e4b62a0b67047e8a40ad403c.jpg"
              alt="User photo">
-        <mat-card-content class="d-flex justify-content-between">
-          <h3 class="m-0">Your Music Here!</h3>
-          <button (click)="logout()" mat-raised-button color="primary">Logout</button>
-        </mat-card-content>
       </mat-card>
 
       <mat-selection-list class="example-card" [multiple]="false">
@@ -38,11 +36,11 @@
       </div>
     </div>
 
-    <div class="col-lg-6 col-md-12 order-lg-1 order-2 flex-wrap">
+    <div class="col-sm-12 col-md-6 order-md-1 order-2 flex-wrap mb-md-3">
       <app-songs-list *ngIf="user" [user]="user"></app-songs-list>
     </div>
 
-    <div class="col-lg-3 col-md-12  order-1 order-lg-2">
+    <div class="col-sm-12 col-md-3 order-1 order-md-2 mb-md-5">
       <app-friends-list *ngIf="user" [user]="user"></app-friends-list>
     </div>
 

@@ -4,9 +4,14 @@
 
 .search-bar{
   padding-left: 1.375rem;
+  padding-right: 1.3rem;
 }
 
 .search-button{
   width: 5.3rem;
   height: 3.25rem;
+}
+
+.align-songs{
+  padding-left: 1.125rem;
 }

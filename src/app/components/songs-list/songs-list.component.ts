@@ -27,6 +27,8 @@ export class SongsListComponent implements OnInit {
   isSearch = false;
   songsOffset = 0;
   songsLimit = 9;
+  isListening = false;
+  songUrl = '';
 
   getSearch = async () => this.songs = await this.songsService.all(this.search);
 
@@ -34,6 +36,15 @@ export class SongsListComponent implements OnInit {
 
   getSongs = async () => this.songs = await this.songsService.all('', String(this.songsOffset),
     String(this.songsLimit))
+
+  checkSearchField = (): void => {
+    if (this.search === '') { this.isSearch = false; }
+  }
+
+  getListen = (uri: string) => {
+    this.songUrl = uri;
+    this.isListening = true;
+  }
 
   openSnackBar = (message: string, action: string): void => {
     this.snackBar.open(message, action, {

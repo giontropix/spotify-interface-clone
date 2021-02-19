@@ -1,34 +1,21 @@
-<div class="row">
-
-  <div class="col-lg-10 col-md-7 search-bar">
+<div class="row justify-content-between">
+  <div class="col-12 search-bar">
     <mat-form-field appearance="fill" class="w-100 text-white">
       <mat-label>Search song, author...</mat-label>
-      <input [(ngModel)]="search" matInput>
+      <input (keyup.enter)="getSearch(); isSearch=true" (keyup.backspace)="getSearch(); checkSearchField()"
+             [(ngModel)]="search" matInput>
     </mat-form-field>
   </div>
-
-  <div class="col-lg-2 col-md-3">
-    <button (click)="getSearch(); isSearch=true" mat-raised-button color="primary" class="mb-3 search-button">Search
-    </button>
-  </div>
-
-  <div *ngIf="isSearch" class="col-12 search-bar">
-    <button (click)="getSongs(); isSearch=false; search=''" mat-raised-button color="primary" class="mb-3">Delete
-      search
-    </button>
-  </div>
-
 </div>
 
-<div class="row justify-content-center">
-
-  <div *ngFor="let song of songs" class="card mb-1 ml-1 border-0">
+<div class="row justify-content-start align-songs">
+  <div *ngFor="let song of songs" class="card mb-md-1 ml-sm-1 border-0">
     <div class="card-body card-color text-white">
       <h2 class="card-title">{{song._title}}</h2>
       <p class="card-text">{{song._artist}}</p>
       <p class="card-text">{{song._genre}}</p>
       <div class="m">
-        <button class="mr-4" mat-raised-button color="primary">Listen</button>
+        <button (click)="getListen(song._src)" class="mr-4" mat-raised-button color="primary">Listen</button>
         <button (click)="openDialogAddSongToPlaylist(song._id, song._title)" mat-raised-button color="accent">+
           Playlist
         </button>
@@ -37,9 +24,16 @@
   </div>
 </div>
 
-<div *ngIf="allSongs.length > 9" class="d-flex justify-content-end mr-1">
+<div *ngIf="!isSearch && allSongs.length > 9 || isSearch && songs.length > 9" class="d-flex justify-content-end mr-1">
   <button (click)="prevSongs()" mat-raised-button color="primary"><</button>
   <button (click)="nextSongs()" mat-raised-button color="primary">></button>
 </div>
 
 <h1 class="text-white" *ngIf="allSongs.length === 0">Sorry, songs can't load now!</h1>
+<h1 class="text-white" *ngIf="isSearch && songs.length === 0">Sorry, no matches!</h1>
+
+<audio *ngIf="isListening" controls>
+  <source src="{{songUrl}}" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+

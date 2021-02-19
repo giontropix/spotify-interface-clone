@@ -1,4 +1,8 @@
-<h1>Playlist title: {{this.playlist?._title}}</h1>
+<div *ngIf="this.playlist" class="d-flex justify-content-around">
+  <h1>Playlist title: {{this.playlist._title | titlecase}}</h1>
+  <h1>Total songs: {{this.playlist._songs.length}}</h1>
+</div>
+
 <mat-dialog-content  class="mat-typography">
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
