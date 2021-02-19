@@ -92,6 +92,7 @@ export class ProfileComponent implements OnInit {
         }
         this.openSnackBar(`Playlist "${result._title}" removed from your list!`, '');
         this.getPlaylists();
+        this.getAllPlaylists();
       }
       });
   }
@@ -110,6 +111,7 @@ export class ProfileComponent implements OnInit {
         }
         this.openSnackBar(`Playlist "${result.controls.title.value}" added to your list!`, '');
         this.getPlaylists();
+        this.getAllPlaylists();
       }
     });
   }

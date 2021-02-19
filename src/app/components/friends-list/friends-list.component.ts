@@ -57,6 +57,7 @@ export class FriendsListComponent implements OnInit {
     await this.friendsService.remove(this.user._id, friendToUnfollowId);
     this.openSnackBar(`${friendToUnfollowName} removed from followed list!`, '');
     this.getFollowed();
+    this.getAllFollowed();
   }
 
   openSnackBar = (message: string, action: string): void => {
@@ -74,6 +75,7 @@ export class FriendsListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async (result) => {
       if (result) {
         this.getFollowed();
+        this.getAllFollowed();
       }
     });
   }

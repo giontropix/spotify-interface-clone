@@ -1,5 +1,9 @@
 <div class="d-flex justify-content-between">
-  <h1 class="text-white playlist-menu m-0">FRIENDS</h1>
+  <h1 *ngIf="allFollowed.length === 1; else elseBlock" class="text-white playlist-menu m-0">{{allFollowed.length}}
+    FRIEND</h1>
+  <ng-template #elseBlock>
+    <h1 class="text-white playlist-menu m-0">{{allFollowed.length}} FRIENDS</h1>
+  </ng-template>
   <button (click)="openDialogAddFriend()" mat-raised-button color="accent" class="button-height">+</button>
 </div>
 <mat-selection-list [multiple]="false">

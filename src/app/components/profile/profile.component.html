@@ -11,17 +11,22 @@
         <img mat-card-image src="https://i.pinimg.com/originals/1d/94/eb/1d94eb83e4b62a0b67047e8a40ad403c.jpg"
              alt="Photo of a Shiba Inu">
         <mat-card-content class="d-flex justify-content-between">
-          <h3 class="m-0">Your Music Here!</h3><button (click)="logout()" mat-raised-button color="primary">Logout</button>
+          <h3 class="m-0">Your Music Here!</h3>
+          <button (click)="logout()" mat-raised-button color="primary">Logout</button>
         </mat-card-content>
       </mat-card>
 
       <mat-selection-list class="example-card" [multiple]="false">
         <div class="d-flex justify-content-between">
-          <h1 class="text-white playlist-menu m-0">PLAYLIST</h1>
+          <h1 *ngIf="allPlaylists.length === 1; else elseBlock"
+              class="text-white playlist-menu m-0">{{allPlaylists.length}} PLAYLIST</h1>
+          <ng-template #elseBlock><h1 class="text-white playlist-menu m-0">{{allPlaylists.length}} PLAYLISTS</h1>
+          </ng-template>
           <button (click)="openDialogAddPlaylist()" mat-raised-button color="accent" class="button-height">+</button>
         </div>
 
-        <mat-list-option *ngFor="let playlist of playlists" [value]="playlist" (click)="openDialogPlaylistDetails(playlist.id)">
+        <mat-list-option *ngFor="let playlist of playlists" [value]="playlist"
+                         (click)="openDialogPlaylistDetails(playlist.id)">
           {{playlist.title}}
         </mat-list-option>
         <h1 *ngIf="allPlaylists.length === 0" class="text-white mt-3">No playlist saved, start now!</h1>
