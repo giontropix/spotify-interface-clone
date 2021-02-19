@@ -44,7 +44,7 @@ export class SongsListComponent implements OnInit {
   }
 
   getListen = (uri: string, title: string, artist: string) => {
-    this.isListening = false;
+    if (this.isListening) { return this.openSnackBarSongWarning('Please stop the current song before change music!', ''); }
     this.songUrl = uri;
     this.currentSong = title;
     this.currentArtist = artist;
@@ -54,6 +54,12 @@ export class SongsListComponent implements OnInit {
   openSnackBar = (message: string, action: string): void => {
     this.snackBar.open(message, action, {
       duration: 4000,
+    });
+  }
+
+  openSnackBarSongWarning = (message: string, action: string): void => {
+    this.snackBar.open(message, action, {
+      duration: 1000,
     });
   }
 
