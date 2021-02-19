@@ -78,6 +78,7 @@ export class ProfileComponent implements OnInit {
       try {
         await this.authService.check(accessToken, refreshToken);
       } catch (err) {
+        this.openSnackBar(err, 'Warning!');
         return this.router.navigate(['/welcome']);
       }
       return;

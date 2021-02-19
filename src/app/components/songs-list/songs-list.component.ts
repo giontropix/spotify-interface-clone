@@ -40,7 +40,10 @@ export class SongsListComponent implements OnInit {
     String(this.songsLimit))
 
   checkSearchField = (): void => {
-    if (this.search === '') { this.isSearch = false; }
+    if (this.search === '') {
+      this.isSearch = false;
+      this.getSongs();
+    }
   }
 
   getListen = (uri: string, title: string, artist: string) => {
