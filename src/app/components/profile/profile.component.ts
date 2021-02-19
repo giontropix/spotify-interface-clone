@@ -61,12 +61,27 @@ export class ProfileComponent implements OnInit {
 
   logout = async () => {
     const accessToken = localStorage.getItem('access_token');
-    const refresgToken = localStorage.getItem('refresh_token');
-    console.log(accessToken, refresgToken);
-    if (accessToken && refresgToken) {
-      await this.authService.logout(accessToken, refresgToken);
+    const refreshToken = localStorage.getItem('refresh_token');
+    if (accessToken && refreshToken) {
+      await this.authService.logout(accessToken, refreshToken);
+      localStorage.setItem('access_token', '');
+      localStorage.setItem('refresh_token', '');
       await this.router.navigate(['/welcome']);
+    }
   }
+
+  goToIndexIfNotLogged = async () => {
+    const accessToken = localStorage.getItem('access_token');
+    const refreshToken = localStorage.getItem('refresh_token');
+    if (accessToken && refreshToken) {
+      try {
+        await this.authService.check(accessToken, refreshToken);
+      } catch (err) {
+        return this.router.navigate(['/welcome']);
+      }
+      return;
+    }
+    return this.router.navigate(['/welcome']);
   }
 
   openSnackBar = (message: string, action: string): void => {
@@ -84,7 +99,6 @@ export class ProfileComponent implements OnInit {
     const dialogRef = this.dialog.open(PlaylistDetailsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(async (result) => {
       if (result) {
-        console.log( result);
         try {
           await this.playlistsService.delete(this.route.snapshot.params.id, result._id);
         } catch (error: any) {
@@ -117,6 +131,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.goToIndexIfNotLogged();
     this.getUser();
     this.getAllPlaylists();
     this.getPlaylists();

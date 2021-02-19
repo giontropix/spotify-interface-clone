@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
     }
     localStorage.setItem('refresh_token', user.refresh_token);
     localStorage.setItem('access_token', user.access_token);
+    localStorage.setItem('user_id', user.id);
     await this.goToUser(user.id);
   }
 
