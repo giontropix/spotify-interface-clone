@@ -22,17 +22,41 @@ export class SongsListComponent implements OnInit {
   ) { }
   @Input() user!: User;
   songs: Song[] = [];
+  allSongs: Song[] = [];
   search = '';
   isSearch = false;
+  songsOffset = 0;
+  songsLimit = 9;
 
   getSearch = async () => this.songs = await this.songsService.all(this.search);
 
-  getSongs = async () => this.songs = await this.songsService.all();
+  getAllSongs = async () => this.allSongs = await this.songsService.all();
+
+  getSongs = async () => this.songs = await this.songsService.all('', String(this.songsOffset),
+    String(this.songsLimit))
 
   openSnackBar = (message: string, action: string): void => {
     this.snackBar.open(message, action, {
       duration: 4000,
     });
+  }
+
+  nextSongs = async () => {
+    if (this.songsOffset + this.songsLimit <= this.allSongs.length) { this.songsOffset = this.songsOffset + this.songsLimit; }
+    this.songs = await this.songsService.all(
+      '',
+      String(this.songsOffset),
+      String(this.songsLimit)
+    );
+  }
+
+  prevSongs = async () => {
+    if (this.songsOffset - this.songsLimit >= 0) { this.songsOffset = this.songsOffset - this.songsLimit; }
+    this.songs = await this.songsService.all(
+      '',
+      String(this.songsOffset),
+      String(this.songsLimit)
+    );
   }
 
   openDialogAddSongToPlaylist = (songId: string, songName: string): void => {
@@ -54,6 +78,7 @@ export class SongsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllSongs();
     this.getSongs();
   }
 

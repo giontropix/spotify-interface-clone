@@ -20,8 +20,36 @@ export class FriendsListComponent implements OnInit {
 
   @Input() user!: User;
   followed: Follower[] = [];
+  allFollowed: Follower[] = [];
+  followedOffset = 0;
+  followedLimit = 10;
 
-  getFollowed = async () => this.followed = await this.friendsService.allFollowed(this.user._id);
+  getAllFollowed = async () => this.allFollowed = await this.friendsService.allFollowed(this.user._id);
+
+  getFollowed = async () => this.followed =
+    await this.friendsService.allFollowed(this.user._id, String(this.followedOffset), String(this.followedLimit))
+
+  nextFollowed = async () => {
+    if (this.followedOffset + this.followedLimit <= this.allFollowed.length) {
+      this.followedOffset = this.followedOffset + this.followedLimit;
+    }
+    this.followed = await this.friendsService.allFollowed(
+      this.user._id,
+      String(this.followedOffset),
+      String(this.followedLimit)
+    );
+  }
+
+  prevFollowed = async () => {
+    if (this.followedOffset - this.followedLimit >= 0) {
+      this.followedOffset = this.followedOffset - this.followedLimit;
+    }
+    this.followed = await this.friendsService.allFollowed(
+      this.user._id,
+      String(this.followedOffset),
+      String(this.followedLimit)
+    );
+  }
 
   removeFollowed = async (friendToUnfollowId: string) => {
     await this.friendsService.remove(this.user._id, friendToUnfollowId);
@@ -40,6 +68,7 @@ export class FriendsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllFollowed();
     this.getFollowed();
   }
 

@@ -10,4 +10,10 @@
     </div>
   </mat-list-option>
 </mat-selection-list>
-<h1 class="text-white" *ngIf="followed.length === 0">No friends followed, start now!</h1>
+
+<div *ngIf="allFollowed.length > 1" class="d-flex align-items-end justify-content-end">
+  <button (click)="prevFollowed()" mat-raised-button color="primary"><</button>
+  <button (click)="nextFollowed()" mat-raised-button color="primary">></button>
+</div>
+
+<h1 class="text-white" *ngIf="followed.length === 10">No friends followed, start now!</h1>

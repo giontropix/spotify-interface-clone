@@ -28,10 +28,36 @@ export class ProfileComponent implements OnInit {
 
   user!: User;
   playlists: any[] = [];
+  allPlaylists: any[] = [];
+  playlistOffset = 0;
+  playlistLimit = 3;
 
   getUser = async () => this.user = await this.usersService.get(this.route.snapshot.params.id);
 
-  getPlaylists = async () => this.playlists = await this.playlistsService.all(this.route.snapshot.params.id);
+  getPlaylists = async () => this.playlists =
+    await this.playlistsService.all(this.route.snapshot.params.id, String(this.playlistOffset), String(this.playlistLimit))
+
+  getAllPlaylists = async () => this.allPlaylists = await this.playlistsService.all(this.route.snapshot.params.id);
+
+  nextPlaylists = async () => {
+    if (this.playlistOffset + this.playlistLimit <= this.allPlaylists.length) {
+      this.playlistOffset = this.playlistOffset + this.playlistLimit;
+    }
+    this.playlists = await this.playlistsService.all(
+      this.route.snapshot.params.id,
+      String(this.playlistOffset),
+      String(this.playlistLimit)
+    );
+  }
+
+  prevPlaylists = async () => {
+    if (this.playlistOffset - this.playlistLimit >= 0) { this.playlistOffset = this.playlistOffset - this.playlistLimit; }
+    this.playlists = await this.playlistsService.all(
+      this.route.snapshot.params.id,
+      String(this.playlistOffset),
+      String(this.playlistLimit)
+    );
+  }
 
   logout = async () => {
     const accessToken = localStorage.getItem('access_token');
@@ -88,6 +114,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getAllPlaylists();
     this.getPlaylists();
   }
 

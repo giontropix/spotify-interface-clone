@@ -36,3 +36,8 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="allSongs.length > 9" class="d-flex justify-content-end mr-1">
+  <button (click)="prevSongs()" mat-raised-button color="primary"><</button>
+  <button (click)="nextSongs()" mat-raised-button color="primary">></button>
+</div>

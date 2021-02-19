@@ -11,8 +11,8 @@ export class PlaylistsService {
   constructor(private http: HttpClient) {
   }
 
-  all = (id: string): Promise<any[]> =>
-    this.http.get<any[]>(`${this.API_BASE_URL}/${id}/playlists`).toPromise()
+  all = (id: string, offset: string = '', limit: string = ''): Promise<any[]> =>
+    this.http.get<any[]>(`${this.API_BASE_URL}/${id}/playlists?offset=${offset}&limit=${limit}`).toPromise()
 
   get = (id: string, listId: string): Promise<Playlist> =>
     this.http.get<Playlist>(`${this.API_BASE_URL}/${id}/playlists/${listId}`).toPromise()
