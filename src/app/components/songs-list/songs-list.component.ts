@@ -21,10 +21,12 @@ export class SongsListComponent implements OnInit {
     private snackBar: MatSnackBar
   ) { }
   @Input() user!: User;
+  @Input() songToPlayFromPlaylist: Song | undefined;
+  playFromPlaylist = false;
   songs: Song[] = [];
   allSongs: Song[] = [];
   search = '';
-  isSearch = false;
+  isSearching = false;
   songsOffset = 0;
   songsLimit = 9;
   isListening = false;
@@ -41,17 +43,30 @@ export class SongsListComponent implements OnInit {
 
   checkSearchField = (): void => {
     if (this.search === '') {
-      this.isSearch = false;
+      this.isSearching = false;
       this.getSongs();
     }
   }
 
-  getListen = (uri: string, title: string, artist: string) => {
+  startPlaying = (uri: string, title: string, artist: string) => {
     if (this.isListening) { return this.openSnackBarSongWarning('Please stop the current song before change music!', ''); }
     this.songUrl = uri;
     this.currentSong = title;
     this.currentArtist = artist;
     this.isListening = true;
+  }
+
+  startPlayingFromPlaylist = (): boolean => {
+    if (this.songToPlayFromPlaylist) {
+      this.playFromPlaylist = true;
+      return true;
+    }
+    return false;
+  }
+
+  stopPlayingFromPlaylist = () => {
+    this.songToPlayFromPlaylist = undefined;
+    this.playFromPlaylist = false;
   }
 
   openSnackBar = (message: string, action: string): void => {

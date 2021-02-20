@@ -25,6 +25,11 @@ export class FriendsListComponent implements OnInit {
   allFollowed: Follower[] = [];
   followedOffset = 0;
   followedLimit = 10;
+  isShowed = false;
+
+  showFriends = () => {
+    this.isShowed = !this.isShowed;
+  }
 
   getAllFollowed = async () => this.allFollowed = await this.friendsService.allFollowed(this.user._id);
 

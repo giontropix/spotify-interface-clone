@@ -8,6 +8,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PlaylistDetailsComponent} from '../dialogs/playlist-details/playlist-details.component';
 import {AuthService} from '../../services/auth.service';
+import {Song} from '../../models/Song';
 
 @Component({
   selector: 'app-profile',
@@ -31,6 +32,7 @@ export class ProfileComponent implements OnInit {
   allPlaylists: any[] = [];
   playlistOffset = 0;
   playlistLimit = 3;
+  songToPlayFromPlaylist!: Song;
 
   getUser = async () => this.user = await this.usersService.get(this.route.snapshot.params.id);
 
@@ -100,7 +102,10 @@ export class ProfileComponent implements OnInit {
     dialogConfig.width = '100%';
     const dialogRef = this.dialog.open(PlaylistDetailsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(async (result) => {
-      if (result) {
+      if (result._src) {
+        this.songToPlayFromPlaylist = result;
+      }
+      else if (result._id) {
         try {
           await this.playlistsService.delete(this.route.snapshot.params.id, result._id);
         } catch (error: any) {

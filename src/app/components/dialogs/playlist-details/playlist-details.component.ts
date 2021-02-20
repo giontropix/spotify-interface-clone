@@ -19,7 +19,7 @@ export class PlaylistDetailsComponent implements OnInit {
     public playlistsService: PlaylistsService,
     private snackBar: MatSnackBar
   ) { }
-  displayedColumns: string[] = ['title', 'length', 'artist', 'genre', 'album', 'action'];
+  displayedColumns: string[] = ['title', 'length', 'artist', 'genre', 'album', 'play', 'remove'];
   playlist!: Playlist;
   dataSource: Song[] = [];
 

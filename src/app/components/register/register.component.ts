@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
     this.group = this.formBuilder.group({
       mail: ['', [Validators.required, Validators.email]],
       user_name: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
     });
   }
 

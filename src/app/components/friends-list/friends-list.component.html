@@ -4,9 +4,14 @@
   <ng-template #elseBlock>
     <h1 class="text-white playlist-menu m-0">{{allFollowed.length}} FRIENDS</h1>
   </ng-template>
+  <button *ngIf="!isShowed; else justShowed" (click)="showFriends()" mat-raised-button color="primary" class="button-height">v</button>
+  <ng-template #justShowed>
+    <button (click)="showFriends()" mat-raised-button color="primary" class="button-height">^</button>
+  </ng-template>
   <button (click)="openDialogAddFriend()" mat-raised-button color="accent" class="button-height">+</button>
 </div>
 
+<div *ngIf="isShowed">
 <mat-selection-list [multiple]="false">
   <mat-list-option *ngFor="let friend of followed" class="p-0">
     <div class="d-flex justify-content-between">
@@ -22,3 +27,4 @@
 </div>
 
 <h1 class="text-white" *ngIf="allFollowed.length === 0">No friends followed, start now!</h1>
+</div>
