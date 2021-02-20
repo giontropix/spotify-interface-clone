@@ -4,14 +4,14 @@
   <ng-template #elseBlock>
     <h1 class="text-white playlist-menu m-0">{{allFollowed.length}} FRIENDS</h1>
   </ng-template>
-  <button *ngIf="!isShowed; else justShowed" (click)="showFriends()" mat-raised-button color="primary" class="button-height">v</button>
+  <button *ngIf="!isFollowedShowed; else justShowed" (click)="showFriends()" mat-raised-button color="primary" class="button-height">^</button>
   <ng-template #justShowed>
-    <button (click)="showFriends()" mat-raised-button color="primary" class="button-height">^</button>
+    <button (click)="showFriends()" mat-raised-button color="primary" class="button-height">v</button>
   </ng-template>
   <button (click)="openDialogAddFriend()" mat-raised-button color="accent" class="button-height">+</button>
 </div>
 
-<div *ngIf="isShowed">
+<div *ngIf="isFollowedShowed">
 <mat-selection-list [multiple]="false">
   <mat-list-option *ngFor="let friend of followed" class="p-0">
     <div class="d-flex justify-content-between">
@@ -21,10 +21,42 @@
   </mat-list-option>
 </mat-selection-list>
 
-<div *ngIf="allFollowed.length > 10" class="d-flex align-items-end justify-content-end">
+<div *ngIf="allFollowed.length > followedLimit" class="d-flex align-items-end justify-content-end">
   <button (click)="prevFollowed()" mat-raised-button color="primary"><</button>
   <button (click)="nextFollowed()" mat-raised-button color="primary">></button>
 </div>
 
 <h1 class="text-white" *ngIf="allFollowed.length === 0">No friends followed, start now!</h1>
 </div>
+
+
+<div class="d-flex justify-content-between mt-5">
+  <h1 *ngIf="allFollowers.length === 1; else elseBlockFollowers" class="text-white playlist-menu m-0">{{allFollowers.length}}
+    FRIEND</h1>
+  <ng-template #elseBlockFollowers>
+    <h1 class="text-white playlist-menu m-0">{{allFollowers.length}} FOLLOWERS</h1>
+  </ng-template>
+  <button *ngIf="!isFollowersShowed; else justShowedFollowers" (click)="showFollowers()" mat-raised-button color="primary" class="button-height">^</button>
+  <ng-template #justShowedFollowers>
+    <button (click)="showFollowers()" mat-raised-button color="primary" class="button-height">v</button>
+  </ng-template>
+</div>
+
+<div *ngIf="isFollowersShowed">
+  <mat-selection-list [multiple]="false">
+    <mat-list-option *ngFor="let friend of followers" class="p-0">
+      <div class="d-flex justify-content-between">
+        {{friend._user_name}}
+        <button (click)="removeFollowed(friend._id, friend._user_name)" mat-raised-button color="warn">-</button>
+      </div>
+    </mat-list-option>
+  </mat-selection-list>
+
+  <div *ngIf="allFollowers.length > followersLimit" class="d-flex align-items-end justify-content-end">
+    <button (click)="prevFollowers()" mat-raised-button color="primary"><</button>
+    <button (click)="nextFollowers()" mat-raised-button color="primary">></button>
+  </div>
+
+  <h1 class="text-white" *ngIf="allFollowers.length === 0">No followers, they will arrive very soon!</h1>
+</div>
+

@@ -23,18 +23,32 @@ export class FriendsListComponent implements OnInit {
   @Input() user!: User;
   followed: Follower[] = [];
   allFollowed: Follower[] = [];
+  followers: Follower[] = [];
+  allFollowers: Follower[] = [];
   followedOffset = 0;
   followedLimit = 10;
-  isShowed = false;
+  followersOffset = 0;
+  followersLimit = 10;
+  isFollowedShowed = false;
+  isFollowersShowed = false;
 
   showFriends = () => {
-    this.isShowed = !this.isShowed;
+    this.isFollowedShowed = !this.isFollowedShowed;
+  }
+
+  showFollowers = () => {
+    this.isFollowersShowed = !this.isFollowersShowed;
   }
 
   getAllFollowed = async () => this.allFollowed = await this.friendsService.allFollowed(this.user._id);
 
+  getAllFollowers = async () => this.allFollowers = await this.friendsService.allFollowers(this.user._id);
+
   getFollowed = async () => this.followed =
     await this.friendsService.allFollowed(this.user._id, String(this.followedOffset), String(this.followedLimit))
+
+  getFollowers = async () => this.followers =
+    await this.friendsService.allFollowers(this.user._id, String(this.followedOffset), String(this.followedLimit))
 
   nextFollowed = async () => {
     if (this.followedOffset + this.followedLimit <= this.allFollowed.length) {
@@ -55,6 +69,28 @@ export class FriendsListComponent implements OnInit {
       this.user._id,
       String(this.followedOffset),
       String(this.followedLimit)
+    );
+  }
+
+  nextFollowers = async () => {
+    if (this.followersOffset + this.followersLimit <= this.allFollowers.length) {
+      this.followersOffset = this.followersOffset + this.followersLimit;
+    }
+    this.followed = await this.friendsService.allFollowed(
+      this.user._id,
+      String(this.followersOffset),
+      String(this.followersLimit)
+    );
+  }
+
+  prevFollowers = async () => {
+    if (this.followersOffset - this.followersLimit >= 0) {
+      this.followersOffset = this.followersOffset - this.followersLimit;
+    }
+    this.followed = await this.friendsService.allFollowed(
+      this.user._id,
+      String(this.followersOffset),
+      String(this.followersLimit)
     );
   }
 
@@ -87,6 +123,7 @@ export class FriendsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllFollowed();
+    this.getAllFollowers()
     this.getFollowed();
   }
 

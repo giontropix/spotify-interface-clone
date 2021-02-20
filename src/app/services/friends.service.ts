@@ -12,6 +12,9 @@ export class FriendsService {
   allFollowed = (id: string, offset: string = '', limit: string = ''): Promise<Follower[]> =>
     this.http.get<Follower[]>(`${this.API_BASE_URL}/users/${id}/followed?offset=${offset}&limit=${limit}`).toPromise()
 
+  allFollowers = (id: string, offset: string = '', limit: string = ''): Promise<Follower[]> =>
+    this.http.get<Follower[]>(`${this.API_BASE_URL}/users/${id}/followers?offset=${offset}&limit=${limit}`).toPromise()
+
   add = (id: string, userId: any): Promise<void> =>
     this.http.put<void>(`${this.API_BASE_URL}/users/${id}/followed`, userId).toPromise()
       .catch(({error: {error}}) => {
