@@ -76,7 +76,7 @@ export class FriendsListComponent implements OnInit {
     if (this.followersOffset + this.followersLimit <= this.allFollowers.length) {
       this.followersOffset = this.followersOffset + this.followersLimit;
     }
-    this.followed = await this.friendsService.allFollowed(
+    this.followers = await this.friendsService.allFollowers(
       this.user._id,
       String(this.followersOffset),
       String(this.followersLimit)
@@ -87,7 +87,7 @@ export class FriendsListComponent implements OnInit {
     if (this.followersOffset - this.followersLimit >= 0) {
       this.followersOffset = this.followersOffset - this.followersLimit;
     }
-    this.followed = await this.friendsService.allFollowed(
+    this.followers = await this.friendsService.allFollowers(
       this.user._id,
       String(this.followersOffset),
       String(this.followersLimit)
