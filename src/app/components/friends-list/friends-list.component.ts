@@ -26,9 +26,9 @@ export class FriendsListComponent implements OnInit {
   followers: Follower[] = [];
   allFollowers: Follower[] = [];
   followedOffset = 0;
-  followedLimit = 10;
+  followedLimit = 5;
   followersOffset = 0;
-  followersLimit = 10;
+  followersLimit = 5;
   isFollowedShowed = false;
   isFollowersShowed = false;
 
