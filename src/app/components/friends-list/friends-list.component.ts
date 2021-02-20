@@ -123,8 +123,9 @@ export class FriendsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllFollowed();
-    this.getAllFollowers()
+    this.getAllFollowers();
     this.getFollowed();
+    this.getFollowers();
   }
 
 }
