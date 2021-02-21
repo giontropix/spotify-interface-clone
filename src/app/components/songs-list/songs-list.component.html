@@ -2,7 +2,7 @@
   <div class="col-12 search-bar">
     <mat-form-field appearance="fill" class="w-100 text-white">
       <mat-label>Search song, author...</mat-label>
-      <input (keyup)="isSearching=true; getSearch(); checkSearchField()"
+      <input (keyup)="isSearching=true; getSearch(); stopSearchingIfEmptyField()"
              [(ngModel)]="search" matInput>
     </mat-form-field>
   </div>

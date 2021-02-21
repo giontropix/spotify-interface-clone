@@ -41,7 +41,7 @@ export class SongsListComponent implements OnInit {
   getSongs = async () => this.songs = await this.songsService.all('', String(this.songsOffset),
     String(this.songsLimit))
 
-  checkSearchField = (): void => {
+  stopSearchingIfEmptyField = (): void => {
     if (this.search === '') {
       this.isSearching = false;
       this.getSongs();
@@ -80,8 +80,6 @@ export class SongsListComponent implements OnInit {
       duration: 1000,
     });
   }
-
-  hideNextSongButton = (): boolean => this.allSongs.length >= this.songsOffset + this.songsLimit;
 
   nextSongs = async () => {
     if (this.songsOffset + this.songsLimit <= this.allSongs.length) { this.songsOffset = this.songsOffset + this.songsLimit; }

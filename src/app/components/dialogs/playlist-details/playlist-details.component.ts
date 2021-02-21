@@ -24,7 +24,8 @@ export class PlaylistDetailsComponent implements OnInit {
   dataSource: Song[] = [];
 
   getPlaylist = async () => {
-    this.playlist = await this.playlistsService.get(this.data.user, this.data.id);
+    const {user, id} = this.data;
+    this.playlist = await this.playlistsService.get(user, id);
     this.dataSource = this.playlist._songs;
   }
 
@@ -35,7 +36,8 @@ export class PlaylistDetailsComponent implements OnInit {
   }
 
   deleteSong = async (songId: string, songTitle: string) => {
-    await this.playlistsService.deleteFromPlaylist(this.data.user, this.data.id, songId);
+    const {user, id} = this.data;
+    await this.playlistsService.deleteFromPlaylist(user, id, songId);
     this.snackBar.open( `Song "${songTitle}" removed from playlist "${this.playlist._title}"`);
     await this.getPlaylist();
   }

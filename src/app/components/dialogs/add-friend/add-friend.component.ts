@@ -29,20 +29,21 @@ export class AddFriendComponent implements OnInit {
   getUsers = async () => {
     this.users = await this.usersService.all();
     this.dataSource = this.users;
-    this.dataSource.splice(this.dataSource.findIndex((user: User) => user._id === this.data.user), 1);
+    this.dataSource.splice(this.dataSource.findIndex(({_id}: User) => _id === this.data.user), 1);
   }
 
-  removeJustFollowed = (id: string) => this.data.followed.find((item: Follower) => item._id === id);
+  removeJustFollowed = (id: string) => this.data.followed.find(({_id}: Follower) => _id === id);
 
   openSnackBar = (message: string, action: string): void => {
     this.snackBar.open(message, action, {
-      duration: 4000,
+      duration: 2000,
     });
   }
 
   addFriend = async (userIdToFollow: string, userNameToFollow: string) => {
+    const {user} = this.data;
     try {
-      await this.friendsService.add(this.data.user, {userIdToFollow});
+      await this.friendsService.add(user, {userIdToFollow});
     } catch (error: any) {
       return this.openSnackBar(error, 'Repeat!');
     }
