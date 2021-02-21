@@ -1,5 +1,5 @@
 <app-nav></app-nav>
 <div class="background d-flex align-items-center justify-content-center">
-    <h1 [ngClass]="isRegister? 'translate': 'translate-back'" class="text-white title">People at Music</h1>
+    <h1 [ngClass]="getTraslateTitleFromLocalStorage() === 'true'? 'translate': 'translate-back'" class="text-white title">People at Music</h1>
   <router-outlet></router-outlet>
 </div>

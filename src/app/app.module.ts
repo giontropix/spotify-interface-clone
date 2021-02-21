@@ -24,7 +24,7 @@ import {SongsListComponent} from './components/songs-list/songs-list.component';
 import {AddSongToPlaylistComponent} from './components/dialogs/add-song-to-playlist/add-song-to-playlist.component';
 import {FriendsListComponent} from './components/friends-list/friends-list.component';
 import {AddFriendComponent} from './components/dialogs/add-friend/add-friend.component';
-
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,8 @@ import {AddFriendComponent} from './components/dialogs/add-friend/add-friend.com
     MatButtonModule,
     MatCardModule,
     MatListModule,
-    MatTableModule
+    MatTableModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

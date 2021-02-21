@@ -60,7 +60,12 @@ export class LoginComponent implements OnInit {
     await this.goToUser(user.id);
   }
 
+  set isRegister(value: boolean) {
+    this.authService.isRegister = value;
+  }
+
   ngOnInit(): void {
+    localStorage.setItem('translateTitle', 'true');
     this.group = this.formBuilder.group({
       mail: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(3)]],

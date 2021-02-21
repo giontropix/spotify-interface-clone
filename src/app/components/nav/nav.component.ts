@@ -15,6 +15,11 @@ export class NavComponent implements OnInit {
     this.authService.isRegister = value;
   }
 
+  setTraslateTitleTrue = () => localStorage.setItem('translateTitle', 'true');
+
+  setTraslateTitleFalse = () => localStorage.setItem('translateTitle', 'false');
+
+
   ngOnInit(): void {
   }
 

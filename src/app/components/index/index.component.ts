@@ -42,7 +42,10 @@ export class IndexComponent implements OnInit {
     }
   }
 
+  getTraslateTitleFromLocalStorage = () => localStorage.getItem('translateTitle');
+
   ngOnInit(): void {
+    localStorage.setItem('translateTitle', 'false');
     this.goToProfileIfJustLogged();
   }
 }

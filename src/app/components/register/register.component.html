@@ -28,7 +28,13 @@
     </mat-form-field>
   </p>
 
+  <mat-radio-group formControlName="sex">
+    <mat-radio-button value="M">Male</mat-radio-button>
+    <mat-radio-button class="ml-3" value="F">Female</mat-radio-button>
+    <mat-error *ngIf="group.controls['sex'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+  </mat-radio-group>
+
 </form>
 
-<button (click)="regUser()" mat-raised-button color="primary" class="register-size">Confirm</button>
+<button (click)="regUser()" mat-raised-button color="primary" class="register-size mt-3">Confirm</button>
 

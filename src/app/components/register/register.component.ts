@@ -53,18 +53,25 @@ export class RegisterComponent implements OnInit {
     if (this.group?.status === 'INVALID') { return this.openSnackBar('Field not properly compiled', 'Repeat'); }
     try {
       await this.authService
-        .register(this.group?.controls.mail.value, this.group?.controls.user_name.value, this.group?.controls.password.value);
+        .register(this.group?.controls.mail.value, this.group?.controls.user_name.value,
+          this.group?.controls.password.value, this.group?.controls.sex.value);
     } catch (error: any){
       return this.openSnackBar(error, 'Repeat!');
     }
     return this.openSnackBar(`User ${this.group?.controls.user_name.value} created!`, '');
   }
 
+  set isRegister(value: boolean) {
+    this.authService.isRegister = value;
+  }
+
   ngOnInit(): void {
+    localStorage.setItem('translateTitle', 'true');
     this.group = this.formBuilder.group({
       mail: ['', [Validators.required, Validators.email]],
       user_name: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(4)]],
+      sex: ['M', [Validators.required]]
     });
   }
 

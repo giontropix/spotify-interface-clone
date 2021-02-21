@@ -10,8 +10,12 @@
           <button (click)="logout()" mat-raised-button color="primary" class="logout-button">Logout</button>
         </mat-card-header>
 
-        <img mat-card-image src="../../../assets/beautiful.jpg"
+        <img *ngIf="user?._sex === 'F'; else elseMale" mat-card-image src="../../../assets/beautiful.jpg"
              alt="User photo">
+        <ng-template #elseMale>
+          <img mat-card-image src="../../../assets/stark.jpg"
+               alt="User photo">
+        </ng-template>
       </mat-card>
 
       <mat-selection-list class="example-card mt-2" [multiple]="false">

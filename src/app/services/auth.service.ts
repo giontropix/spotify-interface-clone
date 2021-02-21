@@ -11,11 +11,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register = async (mail: string, userName: string, password: string): Promise<void> =>
+  register = async (mail: string, userName: string, password: string, sex: string): Promise<void> =>
     this.http.post<void>(`${this.API_BASE_URL}/register`, {
       mail,
       user_name: userName,
-      password
+      password,
+      sex
     }).toPromise().catch(({error: {error}}) => {
       throw new Error(error);
     })
