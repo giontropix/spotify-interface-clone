@@ -81,6 +81,8 @@ export class SongsListComponent implements OnInit {
     });
   }
 
+  hideNextSongButton = (): boolean => this.allSongs.length >= this.songsOffset + this.songsLimit;
+
   nextSongs = async () => {
     if (this.songsOffset + this.songsLimit <= this.allSongs.length) { this.songsOffset = this.songsOffset + this.songsLimit; }
     this.songs = await this.songsService.all(

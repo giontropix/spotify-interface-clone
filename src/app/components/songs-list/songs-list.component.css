@@ -16,6 +16,10 @@
   padding-left: 1.125rem;
 }
 
+.card-max-width{
+  max-width: 14rem;
+}
+
 .stop-button {
   border-radius: 45% 3% 3% 45%;
   position: absolute;

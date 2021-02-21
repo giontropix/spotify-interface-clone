@@ -22,8 +22,8 @@
 </mat-selection-list>
 
 <div *ngIf="allFollowed.length > followedLimit" class="d-flex align-items-end justify-content-end">
-  <button (click)="prevFollowed()" mat-raised-button color="primary"><</button>
-  <button (click)="nextFollowed()" mat-raised-button color="primary">></button>
+  <button *ngIf="followedOffset!==0" (click)="prevFollowed()" mat-raised-button color="primary"><</button>
+  <button [class.hidden-next-button]="!(this.allFollowed.length >= this.followedOffset + this.followedLimit)" (click)="nextFollowed()" mat-raised-button color="primary">></button>
 </div>
 
 <h1 class="text-white" *ngIf="allFollowed.length === 0">No friends followed, start now!</h1>
@@ -53,8 +53,8 @@
   </mat-selection-list>
 
   <div *ngIf="allFollowers.length > followersLimit" class="d-flex align-items-end justify-content-end">
-    <button (click)="prevFollowers()" mat-raised-button color="primary"><</button>
-    <button (click)="nextFollowers()" mat-raised-button color="primary">></button>
+    <button *ngIf="followersOffset!==0" (click)="prevFollowers()" mat-raised-button color="primary"><</button>
+    <button [class.hidden-next-button]="!(this.allFollowers.length >= this.followersOffset + this.followersLimit)" (click)="nextFollowers()" mat-raised-button color="primary">></button>
   </div>
 
   <h1 class="text-white" *ngIf="allFollowers.length === 0">No followers, they will arrive very soon!</h1>

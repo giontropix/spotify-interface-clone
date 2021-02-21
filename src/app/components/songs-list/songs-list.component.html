@@ -9,7 +9,7 @@
 </div>
 
 <div class="row justify-content-start align-songs">
-  <div *ngFor="let song of songs" class="card mb-md-1 ml-sm-1 border-0">
+  <div *ngFor="let song of songs" class="card mb-md-1 ml-sm-1 border-0 card-max-width">
     <div class="card-body card-color text-white">
       <h2 class="card-title">{{song._title}}</h2>
       <p class="card-text">{{song._artist}}</p>
@@ -25,8 +25,8 @@
 </div>
 
 <div *ngIf="!isSearching && allSongs.length > 9 || isSearching && songs.length > 9" class="d-flex justify-content-sm-center justify-content-lg-end mr-1">
-  <button (click)="prevSongs()" mat-raised-button color="primary"><</button>
-  <button (click)="nextSongs()" mat-raised-button color="primary">></button>
+  <button *ngIf="songsOffset !== 0" (click)="prevSongs()" mat-raised-button color="primary"><</button>
+  <button [class.hidden-next-button]="!(this.allSongs.length >= this.songsOffset + this.songsLimit)" (click)="nextSongs()" mat-raised-button color="primary">></button>
 </div>
 
 <h1 class="text-white" *ngIf="allSongs.length === 0">Sorry, songs can't load now!</h1>

@@ -35,8 +35,8 @@
       </mat-selection-list>
 
       <div *ngIf="allPlaylists.length > 3" class="d-flex justify-content-end">
-        <button (click)="prevPlaylists()" mat-raised-button color="primary"><</button>
-        <button (click)="nextPlaylists()" mat-raised-button color="primary">></button>
+        <button *ngIf="playlistOffset!==0" (click)="prevPlaylists()" mat-raised-button color="primary"><</button>
+        <button [class.hidden-next-button]="!(this.allPlaylists.length >= this.playlistOffset + this.playlistLimit)" (click)="nextPlaylists()" mat-raised-button color="primary">></button>
       </div>
     </div>
 

@@ -23,3 +23,7 @@ body {
 .mat-list-base .mat-list-item .mat-list-item-content-reverse, .mat-list-base .mat-list-option .mat-list-item-content-reverse {
   padding-right: 0 !important;
 }
+
+.hidden-next-button{
+  visibility: hidden !important;
+}
