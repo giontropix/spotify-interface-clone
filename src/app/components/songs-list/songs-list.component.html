@@ -2,7 +2,7 @@
   <div class="col-12 search-bar">
     <mat-form-field appearance="fill" class="w-100 text-white">
       <mat-label>Search song, author...</mat-label>
-      <input (keyup)="isSearching=true; getSearch(); stopSearchingIfEmptyField()"
+      <input (keyup)="isSearching=true; searchSong(); stopSearchingIfEmptyField()"
              [(ngModel)]="search" matInput>
     </mat-form-field>
   </div>
@@ -24,9 +24,14 @@
   </div>
 </div>
 
-<div *ngIf="!isSearching && allSongs.length > 9 || isSearching && songs.length > 9" class="d-flex justify-content-sm-center justify-content-lg-end mr-1">
+<div *ngIf="!isSearching && allSongs.length > 9" class="d-flex justify-content-sm-center justify-content-lg-end mr-1">
   <button *ngIf="songsOffset !== 0" (click)="prevSongs()" mat-raised-button color="primary"><</button>
-  <button [class.hidden-next-button]="!(this.allSongs.length >= this.songsOffset + this.songsLimit)" (click)="nextSongs()" mat-raised-button color="primary">></button>
+  <button [class.hidden-next-button]="!(this.allSongs.length >= this.songsOffset + this.songsLimit)" (click)="nextSongs(allSongs)" mat-raised-button color="primary">></button>
+</div>
+
+<div *ngIf="isSearching && allSongs.length > 9" class="d-flex justify-content-sm-center justify-content-lg-end mr-1">
+  <button *ngIf="songsOffset !== 0" (click)="prevSongs(search)" mat-raised-button color="primary"><</button>
+  <button [class.hidden-next-button]="!(this.allSearch.length >= this.songsOffset + this.songsLimit)" (click)="nextSongs(allSearch, search)" mat-raised-button color="primary">></button>
 </div>
 
 <h1 class="text-white" *ngIf="allSongs.length === 0">Sorry, songs can't load now!</h1>

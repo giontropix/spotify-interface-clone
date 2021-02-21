@@ -25,6 +25,7 @@ export class SongsListComponent implements OnInit {
   playFromPlaylist = false;
   songs: Song[] = [];
   allSongs: Song[] = [];
+  allSearch: Song[] = [];
   search = '';
   isSearching = false;
   songsOffset = 0;
@@ -34,7 +35,17 @@ export class SongsListComponent implements OnInit {
   currentArtist = '';
   songUrl = '';
 
-  getSearch = async () => this.songs = await this.songsService.all(this.search);
+  getAllSearch = async () => this.allSearch = await this.songsService.all(this.search);
+
+  getSearch = async () => this.songs = await this.songsService.all(this.search, String(this.songsOffset),
+    String(this.songsLimit))
+
+  searchSong = () => {
+    this.songsOffset = 0;
+    this.getSearch().then(() => {
+      if (this.songs.length === 0 && this.songsOffset !== 0) { this.prevSongs(this.search); }
+    });
+  }
 
   getAllSongs = async () => this.allSongs = await this.songsService.all();
 
@@ -81,19 +92,19 @@ export class SongsListComponent implements OnInit {
     });
   }
 
-  nextSongs = async () => {
-    if (this.songsOffset + this.songsLimit <= this.allSongs.length) { this.songsOffset = this.songsOffset + this.songsLimit; }
+  nextSongs = async (list: Song[], searchFilter = '') => {
+    if (this.songsOffset + this.songsLimit <= list.length) { this.songsOffset = this.songsOffset + this.songsLimit; }
     this.songs = await this.songsService.all(
-      '',
+      searchFilter,
       String(this.songsOffset),
       String(this.songsLimit)
     );
   }
 
-  prevSongs = async () => {
+  prevSongs = async (searchFilter = '') => {
     if (this.songsOffset - this.songsLimit >= 0) { this.songsOffset = this.songsOffset - this.songsLimit; }
     this.songs = await this.songsService.all(
-      '',
+      searchFilter,
       String(this.songsOffset),
       String(this.songsLimit)
     );
