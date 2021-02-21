@@ -26,4 +26,10 @@ export class FriendsService {
       .catch(({error: {error}}) => {
         throw new Error(error);
       })
+
+  block = (id: string, userId: string): Promise<void> =>
+    this.http.delete<void>(`${this.API_BASE_URL}/users/${id}/followers/${userId}`).toPromise()
+      .catch(({error: {error}}) => {
+        throw new Error(error);
+      })
 }

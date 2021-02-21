@@ -47,7 +47,7 @@
     <mat-list-option *ngFor="let friend of followers" class="p-0">
       <div class="d-flex justify-content-between">
         {{friend._user_name}}
-        <button (click)="removeFollowed(friend._id, friend._user_name)" mat-raised-button color="warn">-</button>
+        <button (click)="blockFollower(friend._id, friend._user_name)" mat-raised-button color="warn">-</button>
       </div>
     </mat-list-option>
   </mat-selection-list>

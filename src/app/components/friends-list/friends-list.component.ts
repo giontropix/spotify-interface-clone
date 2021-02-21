@@ -103,6 +103,15 @@ export class FriendsListComponent implements OnInit {
     this.getAllFollowed();
   }
 
+  blockFollower = async (friendToUnfollowId: string, friendToUnfollowName: string) => {
+    await this.friendsService.block(this.user._id, friendToUnfollowId);
+    this.openSnackBar(`${friendToUnfollowName} blocked!`, '');
+    this.getFollowers().then(() => {
+      if (this.followers.length === 0 && this.followersOffset !== 0) { this.prevFollowers(); }
+    });
+    this.getAllFollowers();
+  }
+
   openSnackBar = (message: string, action: string): void => {
     this.snackBar.open(message, action, {
       duration: 4000,

@@ -4,7 +4,7 @@
 <form class="login-size text-white" *ngIf="group" [formGroup]="group">
   <p>
     <mat-form-field appearance="standard">
-      <mat-label>Enter your email</mat-label>
+      <mat-label>Insert your email</mat-label>
       <input matInput placeholder="pat@example.com" formControlName="mail" required>
       <mat-error *ngIf="group.controls['mail'].invalid">{{getMailErrorMessage()}}</mat-error>
     </mat-form-field>
@@ -12,7 +12,7 @@
 
   <p>
     <mat-form-field appearance="standard">
-      <mat-label>Choose a password</mat-label>
+      <mat-label>Insert your password</mat-label>
 
       <input type="password" matInput placeholder="***********" formControlName="password" required>
 
