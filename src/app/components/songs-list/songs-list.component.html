@@ -1,7 +1,7 @@
 <div class="row justify-content-between">
   <div class="col-12 search-bar">
     <mat-form-field appearance="fill" class="w-100 text-white">
-      <mat-label>Search song, author...</mat-label>
+      <mat-label>Search songs, authors...</mat-label>
       <input (keyup)="isSearching=true; searchSong(); stopSearchingIfEmptyField()"
              [(ngModel)]="search" matInput>
     </mat-form-field>
@@ -14,7 +14,7 @@
       <h2 class="card-title">{{song._title}}</h2>
       <p class="card-text">{{song._artist}}</p>
       <p class="card-text">{{song._genre}}</p>
-      <div class="m">
+      <div>
         <button (click)="startPlaying(song._src, song._title, song._artist)" class="mr-4" mat-raised-button color="primary">> Play</button>
         <button (click)="openDialogAddSongToPlaylist(song._id, song._title)" mat-raised-button color="accent">+
           Playlist
