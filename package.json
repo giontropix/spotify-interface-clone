@@ -11,6 +11,8 @@
   },
   "private": true,
   "dependencies": {
+    "3": "^2.1.0",
+    "-": "0.0.1",
     "@angular/animations": "~11.1.2",
     "@angular/cdk": "^11.2.0",
     "@angular/common": "~11.1.2",
@@ -22,6 +24,9 @@
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
     "bootstrap": "^4.6.0",
+    "jquery": "^3.5.1",
+    "ngx-bootstrap": "^6.2.0",
+    "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

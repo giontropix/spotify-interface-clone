@@ -25,6 +25,7 @@ import {AddSongToPlaylistComponent} from './components/dialogs/add-song-to-playl
 import {FriendsListComponent} from './components/friends-list/friends-list.component';
 import {AddFriendComponent} from './components/dialogs/add-friend/add-friend.component';
 import {MatRadioModule} from '@angular/material/radio';
+import {CollapseModule} from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatCardModule,
     MatListModule,
     MatTableModule,
-    MatRadioModule
+    MatRadioModule,
+    CollapseModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

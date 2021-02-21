@@ -1,11 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark nav-color nav-height">
   <div class="container-fluid">
-    <a (click)="setTraslateTitleFalse()" class="navbar-brand title" routerLink="/welcome">Oloregafy</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <a (click)="setTraslateTitleFalse()" class="navbar-brand title" routerLink="/welcome">Olorefy</a>
+
+    <div  id="navbarNav">
       <ul class="navbar-nav ">
         <li class="nav-item menu-title">
           <a (click)="setTraslateTitleTrue()" class="nav-link" routerLink="/welcome/register">Register</a>
@@ -14,7 +11,6 @@
           <a (click)="setTraslateTitleTrue()" class="nav-link" routerLink="/welcome/login">Login</a>
         </li>
       </ul>
-    </div>
     </div>
 
   </div>
