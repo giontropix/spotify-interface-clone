@@ -11,10 +11,6 @@ export class NavComponent implements OnInit {
 
   constructor(public authService: AuthService, public router: Router) { }
 
-  set isRegister(value: boolean) {
-    this.authService.isRegister = value;
-  }
-
   setTraslateTitleTrue = () => localStorage.setItem('translateTitle', 'true');
 
   setTraslateTitleFalse = () => localStorage.setItem('translateTitle', 'false');

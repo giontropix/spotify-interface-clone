@@ -16,10 +16,6 @@ export class IndexComponent implements OnInit {
     private snackBar: MatSnackBar,
   ) { }
 
-  get isRegister(): boolean{
-    return this.authService.isRegister;
-  }
-
   openSnackBar = (message: string, action: string): void => {
     this.snackBar.open(message, action, {
       duration: 4000,
@@ -42,10 +38,9 @@ export class IndexComponent implements OnInit {
     }
   }
 
-  getTraslateTitleFromLocalStorage = () => localStorage.getItem('translateTitle');
+  getTranslateTitleFromLocalStorage = () => localStorage.getItem('translateTitle');
 
   ngOnInit(): void {
-    localStorage.setItem('translateTitle', 'false');
     this.goToProfileIfJustLogged();
   }
 }

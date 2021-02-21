@@ -7,8 +7,6 @@ import {HttpClient} from '@angular/common/http';
 export class AuthService {
   public API_BASE_URL = 'http://localhost:3000';
 
-  isRegister = false;
-
   constructor(private http: HttpClient) {}
 
   register = async (mail: string, userName: string, password: string, sex: string): Promise<void> =>

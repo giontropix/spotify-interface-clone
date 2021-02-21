@@ -61,10 +61,6 @@ export class RegisterComponent implements OnInit {
     return this.openSnackBar(`User ${this.group?.controls.user_name.value} created!`, '');
   }
 
-  set isRegister(value: boolean) {
-    this.authService.isRegister = value;
-  }
-
   ngOnInit(): void {
     localStorage.setItem('translateTitle', 'true');
     this.group = this.formBuilder.group({
