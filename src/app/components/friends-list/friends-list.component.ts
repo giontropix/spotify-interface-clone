@@ -97,7 +97,9 @@ export class FriendsListComponent implements OnInit {
   removeFollowed = async (friendToUnfollowId: string, friendToUnfollowName: string) => {
     await this.friendsService.remove(this.user._id, friendToUnfollowId);
     this.openSnackBar(`${friendToUnfollowName} removed from followed list!`, '');
-    this.getFollowed();
+    this.getFollowed().then(() => {
+      if (this.followed.length === 0 && this.followedOffset !== 0) { this.prevFollowed(); }
+    });
     this.getAllFollowed();
   }
 

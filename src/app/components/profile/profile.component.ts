@@ -91,7 +91,7 @@ export class ProfileComponent implements OnInit {
 
   openSnackBar = (message: string, action: string): void => {
     this.snackBar.open(message, action, {
-      duration: 4000,
+      duration: 2000,
     });
   }
 
@@ -113,7 +113,9 @@ export class ProfileComponent implements OnInit {
           return this.openSnackBar(error, 'Repeat!');
         }
         this.openSnackBar(`Playlist "${result._title}" removed from your list!`, '');
-        this.getPlaylists();
+        this.getPlaylists().then(() => {
+          if (this.playlists.length === 0 && this.playlistOffset !== 0) { this.prevPlaylists(); }
+        });
         this.getAllPlaylists();
       }
       });
