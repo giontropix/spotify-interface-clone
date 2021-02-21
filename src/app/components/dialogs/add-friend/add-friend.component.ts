@@ -30,7 +30,6 @@ export class AddFriendComponent implements OnInit {
     this.users = await this.usersService.all();
     this.dataSource = this.users;
     this.dataSource.splice(this.dataSource.findIndex((user: User) => user._id === this.data.user), 1);
-    this.dataSource.map((user: User) => user._isFollowed = false);
   }
 
   removeJustFollowed = (id: string) => this.data.followed.find((item: Follower) => item._id === id);

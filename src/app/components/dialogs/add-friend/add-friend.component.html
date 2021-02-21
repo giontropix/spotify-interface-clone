@@ -10,7 +10,8 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action</th>
       <td mat-cell *matCellDef="let element">
-        <button *ngIf="!removeJustFollowed(element._id) && !element.isFollowed" (click)=" element.isFollowed= true; isFriendAdded=true; addFriend(element._id, element._user_name)"
+        <button *ngIf="!removeJustFollowed(element._id) && !element.isFollowed"
+                (click)=" element.isFollowed= true; isFriendAdded=true; addFriend(element._id, element._user_name)"
                 mat-raised-button color="primary">Add
         </button>
       </td>

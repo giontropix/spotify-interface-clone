@@ -111,7 +111,7 @@ export class FriendsListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = {user: this.user._id, followed: this.followed};
+    dialogConfig.data = {user: this.user._id, followed: this.allFollowed};
     const dialogRef = this.dialog.open(AddFriendComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(async (result) => {
       if (result) {
