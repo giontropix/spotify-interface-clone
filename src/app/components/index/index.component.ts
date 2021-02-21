@@ -27,18 +27,19 @@ export class IndexComponent implements OnInit {
   }
 
   goToProfileIfJustLogged = async () => {
+    let apiAnswer: any;
     const accessToken = localStorage.getItem('access_token');
     const refreshToken = localStorage.getItem('refresh_token');
     if (accessToken && refreshToken) {
       try {
-        await this.authService.check(accessToken, refreshToken);
+        apiAnswer = await this.authService.check(accessToken, refreshToken);
       } catch (err) {
-        this.openSnackBar(err, 'Warning!');
-        return;
+        return this.openSnackBar(err, 'Warning!');
       }
+      localStorage.setItem('access_token', apiAnswer.access_token);
+      localStorage.setItem('refresh_token', apiAnswer.refresh_token);
       return this.router.navigate([`/users/${localStorage.getItem('user_id')}`]);
     }
-    return;
   }
 
   ngOnInit(): void {

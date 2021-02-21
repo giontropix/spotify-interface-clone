@@ -73,19 +73,19 @@ export class ProfileComponent implements OnInit {
   }
 
   goToIndexIfNotLogged = async () => {
+    let apiAnswer: any;
     const accessToken = localStorage.getItem('access_token');
     const refreshToken = localStorage.getItem('refresh_token');
-    console.log(accessToken, refreshToken);
-    if (accessToken && refreshToken) {
-      try {
-        await this.authService.check(accessToken, refreshToken);
+    if (!accessToken || !refreshToken || accessToken === '' || refreshToken === '')
+    { return this.router.navigate(['/welcome']); }
+    try {
+        apiAnswer = await this.authService.check(accessToken, refreshToken);
       } catch (err) {
-        this.openSnackBar(err, 'Warning!');
         return this.router.navigate(['/welcome']);
       }
-      return;
-    }
-    return this.router.navigate(['/welcome']);
+    localStorage.setItem('access_token', apiAnswer.access_token);
+    localStorage.setItem('refresh_token', apiAnswer.refresh_token);
+    return;
   }
 
   openSnackBar = (message: string, action: string): void => {
