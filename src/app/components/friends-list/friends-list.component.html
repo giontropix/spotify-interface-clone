@@ -4,7 +4,7 @@
   <ng-template #elseBlock>
     <h1 class="text-white playlist-menu m-0">{{allFollowed.length}} FRIENDS</h1>
   </ng-template>
-  <button *ngIf="!isFollowedShowed; else justShowed" (click)="showFriends()" mat-raised-button color="primary" class="button-height">^</button>
+  <button *ngIf="!isFollowedShowed; else justShowed" (click)="showFriends()" mat-raised-button color="primary" class="button-height">ʌ</button>
   <ng-template #justShowed>
     <button (click)="showFriends()" mat-raised-button color="primary" class="button-height">v</button>
   </ng-template>
@@ -32,11 +32,11 @@
 
 <div class="d-flex justify-content-between mt-5">
   <h1 *ngIf="allFollowers.length === 1; else elseBlockFollowers" class="text-white playlist-menu m-0">{{allFollowers.length}}
-    FRIEND</h1>
+    FOLLOWER</h1>
   <ng-template #elseBlockFollowers>
     <h1 class="text-white playlist-menu m-0">{{allFollowers.length}} FOLLOWERS</h1>
   </ng-template>
-  <button *ngIf="!isFollowersShowed; else justShowedFollowers" (click)="showFollowers()" mat-raised-button color="primary" class="button-height">^</button>
+  <button *ngIf="!isFollowersShowed; else justShowedFollowers" (click)="showFollowers()" mat-raised-button color="primary" class="button-height">ʌ</button>
   <ng-template #justShowedFollowers>
     <button (click)="showFollowers()" mat-raised-button color="primary" class="button-height">v</button>
   </ng-template>
