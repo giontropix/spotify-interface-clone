@@ -4,11 +4,11 @@
   <ng-template #elseBlock>
     <h1 class="text-white playlist-menu m-0">{{allFollowed.length}} FRIENDS</h1>
   </ng-template>
+  <button (click)="openDialogAddFriend()" mat-raised-button color="accent" class="button-height">+</button>
   <button *ngIf="!isFollowedShowed; else justShowed" (click)="showFriends()" mat-raised-button color="primary" class="button-height">ʌ</button>
   <ng-template #justShowed>
     <button (click)="showFriends()" mat-raised-button color="primary" class="button-height">v</button>
   </ng-template>
-  <button (click)="openDialogAddFriend()" mat-raised-button color="accent" class="button-height">+</button>
 </div>
 
 <div *ngIf="isFollowedShowed">

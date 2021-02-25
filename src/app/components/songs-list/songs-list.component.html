@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<div *ngIf="!isSearching && allSongs.length > 9" class="d-flex justify-content-sm-center justify-content-lg-end mr-1">
+<div *ngIf="!isSearching && allSongs.length > 9" class="d-flex justify-content-sm-center justify-content-lg-end mr-1 mt-4">
   <button *ngIf="songsOffset !== 0" (click)="prevSongs()" mat-raised-button color="primary"><</button>
   <button [class.hidden-next-button]="!(this.allSongs.length >= this.songsOffset + this.songsLimit)" (click)="nextSongs(allSongs)" mat-raised-button color="primary">></button>
 </div>
