@@ -15,7 +15,7 @@
       <p class="card-text">{{song._artist}}</p>
       <p class="card-text">{{song._genre}}</p>
       <div>
-        <button (click)="startPlaying(song._src, song._title, song._artist)" class="mr-4" mat-raised-button color="primary">> Play</button>
+        <button (click)="startPlaying(song._src, song._title, song._artist, song._id)" class="mr-4" mat-raised-button color="primary">> Play</button>
         <button (click)="openDialogAddSongToPlaylist(song._id, song._title)" mat-raised-button color="accent">+
           Playlist
         </button>
@@ -25,7 +25,7 @@
 </div>
 
 <div *ngIf="!isSearching && allSongs.length > 9" class="d-flex justify-content-sm-center justify-content-lg-end mr-1 mt-4">
-  <button *ngIf="songsOffset !== 0" (click)="prevSongs()" mat-raised-button color="primary"><</button>
+  <button *ngIf="songsOffset !== 0" (click)="prevSongs()" mat-raised-button color="primary"></button>
   <button [class.hidden-next-button]="!(this.allSongs.length >= this.songsOffset + this.songsLimit)" (click)="nextSongs(allSongs)" mat-raised-button color="primary">></button>
 </div>
 

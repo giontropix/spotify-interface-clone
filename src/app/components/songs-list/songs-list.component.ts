@@ -6,6 +6,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {PlaylistsService} from '../../services/playlists.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AddSongToPlaylistComponent} from '../dialogs/add-song-to-playlist/add-song-to-playlist.component';
+import {UsersService} from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-songs-list',
@@ -18,7 +19,8 @@ export class SongsListComponent implements OnInit {
     public songsService: SongsService,
     public dialog: MatDialog,
     public playlistsService: PlaylistsService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private usersService: UsersService
   ) { }
   @Input() user!: User;
   @Input() songToPlayFromPlaylist: Song | undefined;
@@ -35,7 +37,7 @@ export class SongsListComponent implements OnInit {
   currentArtist = '';
   songUrl = '';
 
-  getAllSearch = async () => this.allSearch = await this.songsService.all(this.search);
+  // getAllSearch = async () => this.allSearch = await this.songsService.all(this.search);
 
   getSearch = async () => this.songs = await this.songsService.all(this.search, String(this.songsOffset),
     String(this.songsLimit))
@@ -53,18 +55,20 @@ export class SongsListComponent implements OnInit {
     String(this.songsLimit))
 
   stopSearchingIfEmptyField = (): void => {
+    console.log(this.search);
     if (this.search === '') {
       this.isSearching = false;
       this.getSongs();
     }
   }
 
-  startPlaying = (uri: string, title: string, artist: string) => {
+  startPlaying = async (uri: string, title: string, artist: string, songId: string) => {
     if (this.isListening) { return this.openSnackBarSongWarning('Please stop the current song before change music!', ''); }
     this.songUrl = uri;
     this.currentSong = title;
     this.currentArtist = artist;
     this.isListening = true;
+    await this.usersService.increaseSongView(this.user._id, {song_id: songId});
   }
 
   startPlayingFromPlaylist = (): boolean => {

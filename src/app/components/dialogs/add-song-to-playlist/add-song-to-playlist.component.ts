@@ -14,7 +14,7 @@ export class AddSongToPlaylistComponent implements OnInit {
     public playlistsService: PlaylistsService
   ) { }
 
-  playlists: any[] = [];
+  playlists: {title: string, id: string}[] = [];
 
   getPlaylists = async () => this.playlists = await this.playlistsService.all(this.data.user);
 

@@ -12,4 +12,10 @@ export class UsersService {
   all = (): Promise<User[]> => this.http.get<User[]>(this.API_BASE_URL).toPromise();
 
   get = (id: string): Promise<User> => this.http.get<User>(`${this.API_BASE_URL}/${id}`).toPromise();
+
+  increaseSongView = (id: string, songId: { song_id: string }): Promise<void> =>
+    this.http.put<void>(`${this.API_BASE_URL}/${id}`, songId).toPromise()
+      .catch(({error: {error}}) => {
+        throw new Error(error);
+      })
 }
